@@ -13,17 +13,19 @@ public class GuessingGame extends JFrame {
 	private JTextField txtGuess;
 	private JLabel lblOutput;
 	private int theNumber;
+	private int Count;
 	public void checkGuess() {
 		String guessText = txtGuess.getText();
 		String message = "";
 		try {
 			int guess = Integer.parseInt(guessText);
+			Count += 1;
 			if (guess < theNumber)
 				message = guess + " is too low. Try again.";
 			else if (guess > theNumber)
 				message = guess + " is too high. Try again.";
 			else {
-				message = guess + " is correct. You win!";
+				message = guess + " is correct. You win after " + Count + " tries!";
 				newGame();
 			}
 		} catch (Exception e) {
@@ -36,6 +38,7 @@ public class GuessingGame extends JFrame {
 	}
 	public void newGame() {
 		theNumber = (int)(Math.random() * 100 + 1);
+		Count = 0;
 	}
 	public GuessingGame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
